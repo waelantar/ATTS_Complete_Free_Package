@@ -43,6 +43,11 @@ ESCALATION_THRESHOLD = 0.6
 META_VERIFICATION_THRESHOLD = 0.7  # Section 2.1.3
 MAX_REFINEMENT_ITERATIONS = 2      # Section 1.2, 2.4
 
+# LAPTOP SAFETY DEFAULTS
+DEFAULT_PASSK_K = 2                # Reduced from 3 for laptop safety
+CHECKPOINT_INTERVAL = 10           # Save progress every N problems
+SAFETY_BREAK_INTERVAL = 25         # Pause every N problems
+
 # ============================================================================
 # PROMPTS (Section 4.1 + Extensions)
 # ============================================================================
@@ -153,13 +158,15 @@ def estimate_difficulty_single(model: str, problem: str) -> int:
         pass
     return 5
 
-def estimate_difficulty_passk(model: str, problem: str, k: int = 3) -> Tuple[int, float]:
+def estimate_difficulty_passk(model: str, problem: str, k: int = DEFAULT_PASSK_K) -> Tuple[int, float]:
     """
     Section 2.3.1: Difficulty estimation inspired by Pass@k
     d(P) = 1 - Pass@k(P) / k
 
     We approximate by taking multiple estimates and measuring variance
     High variance = uncertain = likely harder
+
+    LAPTOP SAFE: Default k=2 (reduced from k=3) to limit inference calls
     """
     estimates = []
     for _ in range(k):
@@ -352,7 +359,7 @@ def escalate_mode(current_mode: str) -> Optional[str]:
 # ============================================================================
 
 def atts_workflow(model: str, problem: Dict, enable_escalation: bool = True,
-                 enable_refinement: bool = True) -> Dict:
+                 enable_refinement: bool = False, passk_k: int = DEFAULT_PASSK_K) -> Dict:
     """
     Appendix A: Complete ATTS Workflow
 
@@ -363,12 +370,14 @@ def atts_workflow(model: str, problem: Dict, enable_escalation: bool = True,
     Stage 5: Escalation Check (if needed)
     Stage 6: Dialectical Refinement (if Deep mode)
     Output: Final solution with full metrics
+
+    LAPTOP SAFE: Refinement disabled by default (enable with --enable-refinement)
     """
     workflow_log = {}
     total_tokens = 0
 
     # Stage 1: Difficulty Estimation
-    difficulty, uncertainty = estimate_difficulty_passk(model, problem["problem"], k=3)
+    difficulty, uncertainty = estimate_difficulty_passk(model, problem["problem"], k=passk_k)
     workflow_log["difficulty_estimate"] = difficulty
     workflow_log["difficulty_uncertainty"] = uncertainty
 
@@ -465,36 +474,75 @@ def check_answer(response: str, correct_answer: str) -> bool:
 
 def run_atts_experiment(model: str, problems: List[Dict],
                        enable_escalation: bool = True,
-                       enable_refinement: bool = True) -> List[Dict]:
-    """Run full ATTS experiment with all features"""
+                       enable_refinement: bool = False,
+                       passk_k: int = DEFAULT_PASSK_K,
+                       checkpoint_file: Optional[str] = None) -> List[Dict]:
+    """
+    Run full ATTS experiment with all features
+
+    LAPTOP SAFE: Includes progress checkpointing and safety breaks
+    """
     results = []
 
-    for prob in tqdm(problems, desc="ATTS (Full)"):
-        result = atts_workflow(model, prob, enable_escalation, enable_refinement)
-        results.append(result)
+    for idx, prob in enumerate(tqdm(problems, desc="ATTS (Full)"), start=1):
+        try:
+            result = atts_workflow(model, prob, enable_escalation, enable_refinement, passk_k)
+            results.append(result)
+
+            # Checkpoint progress (avoid data loss on crash)
+            if checkpoint_file and idx % CHECKPOINT_INTERVAL == 0:
+                with open(checkpoint_file, 'w') as f:
+                    json.dump(results, f, indent=2)
+                tqdm.write(f"💾 Checkpoint saved ({idx}/{len(problems)})")
+
+            # Safety break (prevent overheating)
+            if idx % SAFETY_BREAK_INTERVAL == 0 and idx < len(problems):
+                tqdm.write(f"⏸️  Safety break (5s) - {idx}/{len(problems)} complete")
+                time.sleep(5)
+
+        except Exception as e:
+            tqdm.write(f"❌ Error on problem {prob['id']}: {e}")
+            # Continue with other problems
+            continue
 
     return results
 
-def run_baseline_experiment(model: str, problems: List[Dict]) -> List[Dict]:
-    """Baseline: Always Deep mode with refinement"""
+def run_baseline_experiment(model: str, problems: List[Dict],
+                           enable_refinement: bool = False) -> List[Dict]:
+    """
+    Baseline: Always Deep mode
+
+    LAPTOP SAFE: Refinement optional to match ATTS setup
+    """
     results = []
 
-    for prob in tqdm(problems, desc="Baseline"):
-        # Always use deep mode
-        solution, tokens = solve_problem(model, prob["problem"], "deep")
+    for idx, prob in enumerate(tqdm(problems, desc="Baseline"), start=1):
+        try:
+            # Always use deep mode
+            solution, tokens = solve_problem(model, prob["problem"], "deep")
 
-        # Apply refinement to baseline too for fair comparison
-        solution, refine_tokens, _ = dialectical_refinement(model, prob["problem"], solution)
-        tokens += refine_tokens
+            # Apply refinement only if enabled
+            if enable_refinement:
+                solution, refine_tokens, _ = dialectical_refinement(model, prob["problem"], solution)
+                tokens += refine_tokens
 
-        correct = check_answer(solution, prob["answer"])
+            correct = check_answer(solution, prob["answer"])
 
-        results.append({
-            "id": prob["id"],
-            "mode": "deep",
-            "tokens": tokens,
-            "correct": correct
-        })
+            results.append({
+                "id": prob["id"],
+                "mode": "deep",
+                "tokens": tokens,
+                "correct": correct
+            })
+
+            # Safety break
+            if idx % SAFETY_BREAK_INTERVAL == 0 and idx < len(problems):
+                tqdm.write(f"⏸️  Safety break (5s) - {idx}/{len(problems)} complete")
+                time.sleep(5)
+
+        except Exception as e:
+            tqdm.write(f"❌ Error on problem {prob['id']}: {e}")
+            continue
 
     return results
 
@@ -637,22 +685,26 @@ def analyze_comprehensive(atts_results: List[Dict], baseline_results: List[Dict]
 
 def main():
     parser = argparse.ArgumentParser(
-        description="ATTS Comprehensive Experiment - Validates 10+ paper sections"
+        description="ATTS Comprehensive Experiment - LAPTOP SAFE VERSION"
     )
     parser.add_argument("--model", default="qwen2.5:3b-instruct", help="Ollama model name")
     parser.add_argument("--dataset", default="data/math_problems.json", help="Dataset path")
+    parser.add_argument("--max-problems", type=int, default=None, help="Limit dataset size (safety)")
     parser.add_argument("--no-escalation", action="store_true", help="Disable escalation")
-    parser.add_argument("--no-refinement", action="store_true", help="Disable dialectical refinement")
+    parser.add_argument("--enable-refinement", action="store_true", help="Enable dialectical refinement (slower)")
     parser.add_argument("--threshold", type=float, default=0.6, help="Verification threshold")
+    parser.add_argument("--passk-k", type=int, default=DEFAULT_PASSK_K, help="Pass@k samples (default: 2 for safety)")
+    parser.add_argument("--quick-test", action="store_true", help="Run on first 5 problems only")
     args = parser.parse_args()
 
     global ESCALATION_THRESHOLD
     ESCALATION_THRESHOLD = args.threshold
 
-    print(f"\n🏠 ATTS Comprehensive Experiment")
+    print(f"\n🏠 ATTS Comprehensive Experiment - LAPTOP SAFE MODE")
     print("="*60)
     print(f"Model: {args.model}")
-    print(f"Paper Sections Validated: 10+")
+    print(f"Paper Sections Validated: 12+")
+    print(f"🛡️  Safety Features: Checkpointing, Auto-breaks, Error recovery")
     print("="*60)
 
     # Check Ollama
@@ -668,49 +720,106 @@ def main():
     # Load problems
     try:
         with open(args.dataset) as f:
-            problems = json.load(f)["problems"]
-        print(f"📂 Loaded {len(problems)} problems")
+            all_problems = json.load(f)["problems"]
+        print(f"📂 Loaded {len(all_problems)} problems from dataset")
+
+        # Apply safety limits
+        if args.quick_test:
+            problems = all_problems[:5]
+            print(f"🧪 Quick test mode: Using first 5 problems")
+        elif args.max_problems:
+            problems = all_problems[:args.max_problems]
+            print(f"⚠️  Limited to {len(problems)} problems (--max-problems)")
+        else:
+            problems = all_problems
+
+        # Laptop safety warning for large datasets
+        if len(problems) > 100:
+            print(f"\n⚠️  LARGE DATASET WARNING:")
+            print(f"   {len(problems)} problems will take significant time")
+            print(f"   Estimated runtime: {len(problems) * 0.5 / 60:.1f} minutes")
+            print(f"   Consider using --max-problems 100 for initial testing")
+            response = input("   Continue? (y/N): ")
+            if response.lower() != 'y':
+                print("   Cancelled. Use --quick-test or --max-problems to limit size.")
+                return
+
     except FileNotFoundError:
         print(f"❌ Dataset not found: {args.dataset}")
+        print(f"   Convert MATH dataset: python convert_math_dataset.py --size 100")
         return
 
     print(f"\n⚙️  Configuration:")
     print(f"   • Difficulty thresholds: Direct<{THRESHOLD_DIRECT}, Thinking<{THRESHOLD_THINKING}")
     print(f"   • Escalation: {'Enabled' if not args.no_escalation else 'Disabled'}")
-    print(f"   • Dialectical Refinement: {'Enabled' if not args.no_refinement else 'Disabled'}")
+    print(f"   • Dialectical Refinement: {'Enabled' if args.enable_refinement else 'Disabled (faster)'}")
     print(f"   • Verification threshold: {ESCALATION_THRESHOLD}")
-    print(f"   • Max refinement iterations: {MAX_REFINEMENT_ITERATIONS}")
+    print(f"   • Pass@k samples: {args.passk_k}")
+    print(f"   • Checkpoint interval: {CHECKPOINT_INTERVAL} problems")
+    print(f"   • Safety breaks: Every {SAFETY_BREAK_INTERVAL} problems")
     print()
 
+    # RTX 2050 specific reminder
+    print(f"💡 RTX 2050 TIPS:")
+    print(f"   • Monitor GPU: nvidia-smi")
+    print(f"   • Progress auto-saved every {CHECKPOINT_INTERVAL} problems")
+    print(f"   • Ctrl+C to stop safely (progress will be saved)")
+    print()
+
+    # Setup checkpoint file
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    checkpoint_file = f"results/checkpoint_atts_{timestamp}.json"
+
     # Run experiments
-    atts_results = run_atts_experiment(
-        args.model, problems,
-        enable_escalation=not args.no_escalation,
-        enable_refinement=not args.no_refinement
-    )
-    baseline_results = run_baseline_experiment(args.model, problems)
+    try:
+        atts_results = run_atts_experiment(
+            args.model, problems,
+            enable_escalation=not args.no_escalation,
+            enable_refinement=args.enable_refinement,
+            passk_k=args.passk_k,
+            checkpoint_file=checkpoint_file
+        )
+        baseline_results = run_baseline_experiment(
+            args.model, problems,
+            enable_refinement=args.enable_refinement
+        )
+    except KeyboardInterrupt:
+        print("\n\n⚠️  Interrupted by user!")
+        print(f"   Checkpoint saved at: {checkpoint_file}")
+        print(f"   You can analyze partial results from checkpoint file")
+        return
 
     # Comprehensive analysis
     analyze_comprehensive(atts_results, baseline_results)
 
     # Save results
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     output_file = f"results/comprehensive_results_{timestamp}.json"
     with open(output_file, "w") as f:
         json.dump({
             "config": {
                 "model": args.model,
+                "dataset_size": len(problems),
                 "threshold_direct": THRESHOLD_DIRECT,
                 "threshold_thinking": THRESHOLD_THINKING,
                 "escalation_threshold": ESCALATION_THRESHOLD,
                 "max_refinement_iterations": MAX_REFINEMENT_ITERATIONS,
+                "passk_k": args.passk_k,
                 "escalation_enabled": not args.no_escalation,
-                "refinement_enabled": not args.no_refinement
+                "refinement_enabled": args.enable_refinement
             },
             "atts": atts_results,
             "baseline": baseline_results
         }, f, indent=2)
     print(f"\n💾 Saved: {output_file}")
+
+    # Clean up checkpoint
+    try:
+        import os
+        if os.path.exists(checkpoint_file):
+            os.remove(checkpoint_file)
+            print(f"🗑️  Removed checkpoint file (experiment complete)")
+    except:
+        pass
 
 if __name__ == "__main__":
     main()

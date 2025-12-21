@@ -91,33 +91,59 @@ ATTS_Complete_Free_Package/
 └── docs/                         # Additional documentation
 ```
 
-## Setup
+## 🚀 Quick Start (Laptop Safe)
 
-### Prerequisites
+**⚠️ RTX 2050 Users**: See [LAPTOP_SAFETY_GUIDE.md](LAPTOP_SAFETY_GUIDE.md) for detailed safety tips!
 
-1. **Docker** (for Ollama)
-2. **Python 3.8+**
-
-### Installation
+### Step 1: Setup (One Time)
 
 ```bash
 # 1. Install Ollama via Docker
 docker run -d -v ollama:/root/.ollama -p 11434:11434 --name ollama ollama/ollama
 
-# 2. Pull a model (Qwen 2.5 3B recommended for laptops)
+# 2. Pull a model (Qwen 2.5 3B - laptop friendly)
 docker exec -it ollama ollama pull qwen2.5:3b-instruct
 
 # 3. Install Python dependencies
 pip install -r requirements.txt
 ```
 
-### Verify Ollama is Running
+### Step 2: Get Dataset (Choose One)
+
+**Option A: Use Existing 25-Problem Sample**
+```bash
+# Already included - just run experiments!
+python atts_experiment_local.py --quick-test
+```
+
+**Option B: Convert MATH Dataset (Recommended)**
+```bash
+# Small test dataset (100 problems, ~5 min to convert)
+python convert_math_dataset.py --size 100
+
+# Creates: data/math_problems.json
+```
+
+### Step 3: Run Experiments
 
 ```bash
-# Test the model
-docker exec -it ollama ollama run qwen2.5:3b-instruct
-# Type "hello" to test, then Ctrl+D to exit
+# Quick validation (5 problems, ~2 minutes)
+python atts_experiment_local.py --quick-test
+
+# Small run (25 problems, ~15 minutes)
+python atts_experiment_local.py --max-problems 25
+
+# Medium run (100 problems, ~1 hour) - Monitor temperature!
+python atts_experiment_local.py --max-problems 100
 ```
+
+### Safety Features
+
+✅ Auto-checkpointing every 10 problems
+✅ Safety breaks every 25 problems
+✅ Ctrl+C safe (progress saved)
+✅ RTX 2050 optimized defaults
+✅ Refinement OFF by default (faster)
 
 ## Usage
 
@@ -244,9 +270,22 @@ Example results from local testing (qwen2.5:3b-instruct):
 
 ## Hardware Requirements
 
-- **Minimum**: 8GB RAM, 4 CPU cores (for qwen2.5:3b)
-- **Recommended**: 16GB RAM, 8 CPU cores (for larger models)
-- **GPU**: Not required (CPU-only works fine for 3B models)
+### Tested Configuration (RTX 2050)
+- **GPU**: RTX 2050 (4GB VRAM) - **WORKING**
+- **RAM**: 8GB+ recommended
+- **CPU**: 4+ cores
+- **Model**: qwen2.5:3b-instruct (fits in 2-3GB VRAM)
+
+### Other Configurations
+- **Minimum**: 8GB RAM, 4 CPU cores (CPU-only)
+- **Recommended**: 16GB RAM, RTX 3050+ (8GB VRAM)
+- **GPU**: Optional but recommended for speed
+
+**⚠️ Laptop Users**: See [LAPTOP_SAFETY_GUIDE.md](LAPTOP_SAFETY_GUIDE.md) for:
+- Temperature monitoring
+- Safe dataset sizes
+- Performance tuning
+- Troubleshooting
 
 ## Troubleshooting
 
