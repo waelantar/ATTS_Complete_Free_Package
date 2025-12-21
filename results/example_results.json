@@ -1,0 +1,356 @@
+{
+  "atts": [
+    {
+      "id": 1,
+      "true_difficulty": "easy",
+      "predicted_difficulty": 1,
+      "mode": "direct",
+      "tokens": 3,
+      "correct": true
+    },
+    {
+      "id": 2,
+      "true_difficulty": "easy",
+      "predicted_difficulty": 3,
+      "mode": "direct",
+      "tokens": 51,
+      "correct": true
+    },
+    {
+      "id": 3,
+      "true_difficulty": "easy",
+      "predicted_difficulty": 1,
+      "mode": "direct",
+      "tokens": 3,
+      "correct": true
+    },
+    {
+      "id": 4,
+      "true_difficulty": "easy",
+      "predicted_difficulty": 1,
+      "mode": "direct",
+      "tokens": 5,
+      "correct": true
+    },
+    {
+      "id": 5,
+      "true_difficulty": "easy",
+      "predicted_difficulty": 3,
+      "mode": "direct",
+      "tokens": 3,
+      "correct": false
+    },
+    {
+      "id": 6,
+      "true_difficulty": "easy",
+      "predicted_difficulty": 2,
+      "mode": "direct",
+      "tokens": 16,
+      "correct": true
+    },
+    {
+      "id": 7,
+      "true_difficulty": "easy",
+      "predicted_difficulty": 1,
+      "mode": "direct",
+      "tokens": 8,
+      "correct": true
+    },
+    {
+      "id": 8,
+      "true_difficulty": "medium",
+      "predicted_difficulty": 4,
+      "mode": "thinking",
+      "tokens": 143,
+      "correct": true
+    },
+    {
+      "id": 9,
+      "true_difficulty": "medium",
+      "predicted_difficulty": 4,
+      "mode": "thinking",
+      "tokens": 244,
+      "correct": true
+    },
+    {
+      "id": 10,
+      "true_difficulty": "medium",
+      "predicted_difficulty": 5,
+      "mode": "thinking",
+      "tokens": 309,
+      "correct": true
+    },
+    {
+      "id": 11,
+      "true_difficulty": "medium",
+      "predicted_difficulty": 3,
+      "mode": "direct",
+      "tokens": 24,
+      "correct": true
+    },
+    {
+      "id": 12,
+      "true_difficulty": "medium",
+      "predicted_difficulty": 4,
+      "mode": "thinking",
+      "tokens": 420,
+      "correct": true
+    },
+    {
+      "id": 13,
+      "true_difficulty": "medium",
+      "predicted_difficulty": 4,
+      "mode": "thinking",
+      "tokens": 380,
+      "correct": true
+    },
+    {
+      "id": 14,
+      "true_difficulty": "medium",
+      "predicted_difficulty": 5,
+      "mode": "thinking",
+      "tokens": 467,
+      "correct": true
+    },
+    {
+      "id": 15,
+      "true_difficulty": "medium",
+      "predicted_difficulty": 4,
+      "mode": "thinking",
+      "tokens": 336,
+      "correct": true
+    },
+    {
+      "id": 16,
+      "true_difficulty": "medium",
+      "predicted_difficulty": 3,
+      "mode": "direct",
+      "tokens": 12,
+      "correct": true
+    },
+    {
+      "id": 17,
+      "true_difficulty": "medium",
+      "predicted_difficulty": 4,
+      "mode": "thinking",
+      "tokens": 393,
+      "correct": true
+    },
+    {
+      "id": 18,
+      "true_difficulty": "hard",
+      "predicted_difficulty": 4,
+      "mode": "thinking",
+      "tokens": 500,
+      "correct": true
+    },
+    {
+      "id": 19,
+      "true_difficulty": "hard",
+      "predicted_difficulty": 4,
+      "mode": "thinking",
+      "tokens": 310,
+      "correct": true
+    },
+    {
+      "id": 20,
+      "true_difficulty": "hard",
+      "predicted_difficulty": 7,
+      "mode": "deep",
+      "tokens": 657,
+      "correct": true
+    },
+    {
+      "id": 21,
+      "true_difficulty": "hard",
+      "predicted_difficulty": 5,
+      "mode": "thinking",
+      "tokens": 415,
+      "correct": true
+    },
+    {
+      "id": 22,
+      "true_difficulty": "hard",
+      "predicted_difficulty": 7,
+      "mode": "deep",
+      "tokens": 295,
+      "correct": true
+    },
+    {
+      "id": 23,
+      "true_difficulty": "hard",
+      "predicted_difficulty": 5,
+      "mode": "thinking",
+      "tokens": 500,
+      "correct": false
+    },
+    {
+      "id": 24,
+      "true_difficulty": "hard",
+      "predicted_difficulty": 5,
+      "mode": "thinking",
+      "tokens": 278,
+      "correct": true
+    },
+    {
+      "id": 25,
+      "true_difficulty": "hard",
+      "predicted_difficulty": 5,
+      "mode": "thinking",
+      "tokens": 500,
+      "correct": true
+    }
+  ],
+  "baseline": [
+    {
+      "id": 1,
+      "mode": "deep",
+      "tokens": 350,
+      "correct": true
+    },
+    {
+      "id": 2,
+      "mode": "deep",
+      "tokens": 332,
+      "correct": true
+    },
+    {
+      "id": 3,
+      "mode": "deep",
+      "tokens": 389,
+      "correct": true
+    },
+    {
+      "id": 4,
+      "mode": "deep",
+      "tokens": 300,
+      "correct": true
+    },
+    {
+      "id": 5,
+      "mode": "deep",
+      "tokens": 278,
+      "correct": true
+    },
+    {
+      "id": 6,
+      "mode": "deep",
+      "tokens": 257,
+      "correct": true
+    },
+    {
+      "id": 7,
+      "mode": "deep",
+      "tokens": 309,
+      "correct": true
+    },
+    {
+      "id": 8,
+      "mode": "deep",
+      "tokens": 304,
+      "correct": true
+    },
+    {
+      "id": 9,
+      "mode": "deep",
+      "tokens": 365,
+      "correct": true
+    },
+    {
+      "id": 10,
+      "mode": "deep",
+      "tokens": 429,
+      "correct": true
+    },
+    {
+      "id": 11,
+      "mode": "deep",
+      "tokens": 299,
+      "correct": true
+    },
+    {
+      "id": 12,
+      "mode": "deep",
+      "tokens": 434,
+      "correct": true
+    },
+    {
+      "id": 13,
+      "mode": "deep",
+      "tokens": 598,
+      "correct": true
+    },
+    {
+      "id": 14,
+      "mode": "deep",
+      "tokens": 535,
+      "correct": true
+    },
+    {
+      "id": 15,
+      "mode": "deep",
+      "tokens": 422,
+      "correct": true
+    },
+    {
+      "id": 16,
+      "mode": "deep",
+      "tokens": 310,
+      "correct": true
+    },
+    {
+      "id": 17,
+      "mode": "deep",
+      "tokens": 655,
+      "correct": true
+    },
+    {
+      "id": 18,
+      "mode": "deep",
+      "tokens": 619,
+      "correct": true
+    },
+    {
+      "id": 19,
+      "mode": "deep",
+      "tokens": 338,
+      "correct": true
+    },
+    {
+      "id": 20,
+      "mode": "deep",
+      "tokens": 658,
+      "correct": false
+    },
+    {
+      "id": 21,
+      "mode": "deep",
+      "tokens": 842,
+      "correct": true
+    },
+    {
+      "id": 22,
+      "mode": "deep",
+      "tokens": 593,
+      "correct": true
+    },
+    {
+      "id": 23,
+      "mode": "deep",
+      "tokens": 852,
+      "correct": true
+    },
+    {
+      "id": 24,
+      "mode": "deep",
+      "tokens": 487,
+      "correct": true
+    },
+    {
+      "id": 25,
+      "mode": "deep",
+      "tokens": 509,
+      "correct": true
+    }
+  ]
+}
