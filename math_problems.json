@@ -1,0 +1,154 @@
+{
+  "problems": [
+    {
+      "id": 1,
+      "difficulty_label": "easy",
+      "problem": "What is 15 + 27?",
+      "answer": "42"
+    },
+    {
+      "id": 2,
+      "difficulty_label": "easy",
+      "problem": "If x = 5, what is 2x + 3?",
+      "answer": "13"
+    },
+    {
+      "id": 3,
+      "difficulty_label": "easy",
+      "problem": "What is 144 divided by 12?",
+      "answer": "12"
+    },
+    {
+      "id": 4,
+      "difficulty_label": "easy",
+      "problem": "Solve for x: x + 7 = 15",
+      "answer": "8"
+    },
+    {
+      "id": 5,
+      "difficulty_label": "easy",
+      "problem": "What is 25% of 80?",
+      "answer": "20"
+    },
+    {
+      "id": 6,
+      "difficulty_label": "easy",
+      "problem": "What is the perimeter of a square with side length 5?",
+      "answer": "20"
+    },
+    {
+      "id": 7,
+      "difficulty_label": "easy",
+      "problem": "If a book costs $12 and you pay with a $20 bill, how much change do you get?",
+      "answer": "8"
+    },
+    {
+      "id": 8,
+      "difficulty_label": "medium",
+      "problem": "Solve for x: 3x + 5 = 2x + 12",
+      "answer": "7"
+    },
+    {
+      "id": 9,
+      "difficulty_label": "medium",
+      "problem": "What is the area of a triangle with base 10 and height 6?",
+      "answer": "30"
+    },
+    {
+      "id": 10,
+      "difficulty_label": "medium",
+      "problem": "If f(x) = x^2 + 3x, what is f(4)?",
+      "answer": "28"
+    },
+    {
+      "id": 11,
+      "difficulty_label": "medium",
+      "problem": "Find the value of x if 2^x = 32",
+      "answer": "5"
+    },
+    {
+      "id": 12,
+      "difficulty_label": "medium",
+      "problem": "What is the sum of the first 10 positive integers?",
+      "answer": "55"
+    },
+    {
+      "id": 13,
+      "difficulty_label": "medium",
+      "problem": "Simplify: (x^2 - 9) / (x - 3) for x ≠ 3",
+      "answer": "x + 3"
+    },
+    {
+      "id": 14,
+      "difficulty_label": "medium",
+      "problem": "What is the probability of rolling a sum of 7 with two fair dice?",
+      "answer": "1/6"
+    },
+    {
+      "id": 15,
+      "difficulty_label": "medium",
+      "problem": "Find the median of: 3, 7, 2, 9, 5, 1, 8",
+      "answer": "5"
+    },
+    {
+      "id": 16,
+      "difficulty_label": "medium",
+      "problem": "A car travels 120 miles in 2 hours. What is its average speed in mph?",
+      "answer": "60"
+    },
+    {
+      "id": 17,
+      "difficulty_label": "medium",
+      "problem": "Solve the system: x + y = 10 and x - y = 4",
+      "answer": "x=7, y=3"
+    },
+    {
+      "id": 18,
+      "difficulty_label": "hard",
+      "problem": "Find all integer solutions to x^2 + y^2 = 25 where x, y > 0",
+      "answer": "(3,4) and (4,3)"
+    },
+    {
+      "id": 19,
+      "difficulty_label": "hard",
+      "problem": "What is the third angle of a triangle if two angles are 45° and 75°?",
+      "answer": "60"
+    },
+    {
+      "id": 20,
+      "difficulty_label": "hard",
+      "problem": "How many ways can you arrange the letters in MISSISSIPPI?",
+      "answer": "34650"
+    },
+    {
+      "id": 21,
+      "difficulty_label": "hard",
+      "problem": "Find the sum of the infinite series: 1 + 1/2 + 1/4 + 1/8 + ...",
+      "answer": "2"
+    },
+    {
+      "id": 22,
+      "difficulty_label": "hard",
+      "problem": "In how many ways can 8 people be seated around a circular table?",
+      "answer": "5040"
+    },
+    {
+      "id": 23,
+      "difficulty_label": "hard",
+      "problem": "Find the number of positive divisors of 360",
+      "answer": "24"
+    },
+    {
+      "id": 24,
+      "difficulty_label": "hard",
+      "problem": "What is the greatest common divisor of 168 and 180?",
+      "answer": "12"
+    },
+    {
+      "id": 25,
+      "difficulty_label": "hard",
+      "problem": "A bag has 5 red and 3 blue balls. If 2 balls are drawn without replacement, what is the probability both are red?",
+      "answer": "5/14"
+    }
+  ]
+}
