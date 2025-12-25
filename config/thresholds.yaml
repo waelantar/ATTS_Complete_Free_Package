@@ -1,0 +1,40 @@
+# ATTS Thresholds Configuration
+# Section 2.3.2: Compute Allocation Policy
+
+difficulty:
+  # Mode selection boundaries
+  direct_threshold: 4      # Problems with difficulty < 4 use direct mode
+  thinking_threshold: 7    # Problems with difficulty < 7 use thinking mode
+  # Problems >= 7 use deep mode
+
+  # Pass@k estimation
+  passk_k: 2               # Number of samples for difficulty estimation (laptop safe)
+  min_difficulty: 1
+  max_difficulty: 10
+
+escalation:
+  # Section 2.3.3: Uncertainty-Triggered Escalation
+  threshold: 0.80          # Escalate if verification score < this
+  ascot_trigger: 0.60      # arXiv:2508.05282 - AVM trigger for very low scores
+
+refinement:
+  # Section 1.2, 2.4: Dialectical Refinement
+  max_iterations: 2        # Maximum refinement cycles
+  early_exit_score: 0.85   # Stop refinement if score exceeds this
+
+meta_verification:
+  # Section 2.1.3: Hallucination Detection
+  threshold: 0.7           # Critique validity threshold
+
+# Laptop Safety
+safety:
+  checkpoint_interval: 10   # Save progress every N problems
+  break_interval: 25        # Pause every N problems
+  break_duration: 5         # Seconds to pause
+  max_gpu_temp: 75          # Celsius, pause if exceeded
+
+# Pareto Analysis
+pareto:
+  # Section 3.2: Cost-Benefit Analysis
+  min_token_savings: 0.20   # Minimum 20% savings for Pareto improvement
+  max_accuracy_loss: 0.05   # Maximum 5% accuracy loss tolerated

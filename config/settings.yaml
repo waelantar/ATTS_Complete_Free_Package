@@ -1,0 +1,25 @@
+# ATTS General Settings
+
+ollama:
+  host: "http://localhost:11434"
+  default_model: "qwen2.5:3b-instruct"
+  temperature: 0.7
+  timeout: 120
+
+output:
+  results_dir: "results"
+  checkpoint_prefix: "checkpoint_atts"
+  results_prefix: "comprehensive_results"
+
+explainability:
+  # XAI visibility settings
+  show_decision_trace: true
+  show_confidence_breakdown: true
+  show_token_usage: true
+  show_rubric_details: true
+  verbosity: "normal"  # minimal, normal, verbose
+
+display:
+  use_rich: true       # Use rich library for formatted output
+  show_progress: true
+  color_scheme: "auto"  # auto, dark, light

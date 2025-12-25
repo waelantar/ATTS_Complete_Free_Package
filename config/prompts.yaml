@@ -1,0 +1,111 @@
+# ATTS Prompts Configuration
+# Paper Section References Included
+
+difficulty_estimation:
+  # Section 2.3.1: Difficulty Estimation (Pass@k inspired)
+  template: |
+    Rate the difficulty of this math problem from 1-10.
+    1-3: Easy (single-step arithmetic)
+    4-6: Medium (multi-step reasoning)
+    7-10: Hard (competition-level, requires deep reasoning)
+    Output ONLY a number.
+    Problem: {problem}
+    Difficulty:
+  max_tokens: 10
+
+solution_modes:
+  # Section 2.3.2: Compute Allocation Policy
+  direct:
+    template: |
+      Solve concisely: {problem}
+      Answer:
+    max_tokens: 150
+    description: "Fast, single-step solutions for easy problems"
+
+  thinking:
+    template: |
+      Solve step by step: {problem}
+      Steps:
+    max_tokens: 500
+    description: "Multi-step reasoning for medium problems"
+
+  deep:
+    # Phase 3: SSR Optimization - Forces model to generate sub-steps
+    template: |
+      Solve carefully with verification: {problem}
+      Follow these steps:
+      1. Break the problem into verifiable sub-steps.
+      2. For each step, state the formula or reasoning used.
+      3. Verify the arithmetic/logic before proceeding.
+      Solution:
+    max_tokens: 1000
+    description: "Full verification chain for hard problems"
+
+verification:
+  # Section 2.1.2: USVA Generalized Verification Rubrics
+  usva:
+    template: |
+      Evaluate this solution using these criteria (score 0-1 each):
+      Logical Coherence (LC): Do steps follow logically?
+      Factual Correctness (FC): Are calculations/facts correct? CHECK ARITHMETIC CAREFULLY.
+      Completeness (CM): Are all aspects addressed?
+      Goal Alignment (GA): Does it provide a clear final answer?
+
+      IMPORTANT: For FC, verify any numerical calculations step-by-step.
+      If the solution is too short or lacks detail, score FC and CM low.
+      Problem: {problem}
+      Solution: {solution}
+      Output format:
+      LC: [0-1 score]
+      FC: [0-1 score]
+      CM: [0-1 score]
+      GA: [0-1 score]
+      Overall: [average]
+      Reasoning: [brief explanation of scores]
+    max_tokens: 200
+    rubrics:
+      - name: "LC"
+        full_name: "Logical Coherence"
+        description: "Do steps follow logically from each other?"
+      - name: "FC"
+        full_name: "Factual Correctness"
+        description: "Are calculations and facts correct?"
+      - name: "CM"
+        full_name: "Completeness"
+        description: "Are all aspects of the problem addressed?"
+      - name: "GA"
+        full_name: "Goal Alignment"
+        description: "Does it provide a clear final answer?"
+
+  # Section 2.1.3: Integrated Meta-Verification
+  meta_verification:
+    template: |
+      Is this critique valid or hallucinated?
+      A valid critique identifies real issues. A hallucinated critique claims problems that don't exist.
+      Problem: {problem}
+      Solution: {solution}
+      Critique: {critique}
+      Answer with ONLY: VALID or HALLUCINATED
+      Assessment:
+    max_tokens: 20
+
+dialectical:
+  # Section 1.2: Dialectical Nature of Advanced Reasoning
+  critique:
+    template: |
+      You are a critical reviewer. Identify specific errors or gaps in this solution.
+      If the solution is correct, say "No issues found."
+      Problem: {problem}
+      Solution: {solution}
+      Critique:
+    max_tokens: 300
+
+  # Section 2.4: Distilled Verification (Refiner Role)
+  refine:
+    template: |
+      Improve this solution based on the critique.
+      Problem: {problem}
+      Original Solution: {solution}
+      Critique: {critique}
+      Improved Solution:
+    max_tokens: 500

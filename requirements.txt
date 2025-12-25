@@ -1,10 +1,12 @@
 # ATTS Experiment Dependencies
 
 # Core Dependencies
-ollama>=0.1.0              # Ollama Python client for local model serving
+ollama>=0.4.0              # Ollama Python client for local model serving
 pandas>=2.0.0              # Data analysis and result tabulation
 tqdm>=4.65.0               # Progress bars for experiments
 numpy>=1.24.0              # Numerical operations (Pass@k uncertainty)
+PyYAML>=6.0                # YAML configuration loading
+rich>=13.0.0               # Beautiful terminal output and visualization
 
 # Dataset Conversion (optional - only needed for MATH dataset)
 datasets>=2.14.0           # Hugging Face datasets library
