@@ -5,6 +5,8 @@ A framework for optimizing inference compute allocation in language models throu
 **Author:** Wael Antar
 **Contact:** antarwael@ieee.org
 
+**Research Paper:** [atts_research_paper.pdf](atts_research_paper.pdf)
+
 ## Validated Results (100 Problems)
 
 | Metric | ATTS | Baseline | Improvement |
