@@ -128,8 +128,14 @@ class OllamaAdapter(IModelCaller):
     def is_available(self) -> bool:
         """Check if Ollama is running and model is available."""
         try:
-            models = self._client.list()
-            model_names = [m.get("name", "") for m in models.get("models", [])]
+            response = self._client.list()
+            # Handle both old dict format and new object format
+            if hasattr(response, 'models'):
+                # New ollama library format: ListResponse with Model objects
+                model_names = [m.model for m in response.models]
+            else:
+                # Old dict format
+                model_names = [m.get("name", "") for m in response.get("models", [])]
             # Check if our model (or a variant) is available
             return any(self._model_name in name for name in model_names)
         except Exception:

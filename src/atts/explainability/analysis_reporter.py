@@ -144,7 +144,7 @@ class AnalysisReporter:
         )
 
         # Pareto improvement: saves tokens AND maintains accuracy
-        is_pareto = token_savings > 0.2 and (baseline_accuracy - atts_accuracy) < 0.05
+        is_pareto = bool(token_savings > 0.2 and (baseline_accuracy - atts_accuracy) < 0.05)
 
         return ExperimentAnalysis(
             atts_accuracy=atts_accuracy,

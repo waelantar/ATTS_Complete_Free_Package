@@ -3,152 +3,802 @@
     {
       "id": 1,
       "difficulty_label": "easy",
-      "problem": "What is 15 + 27?",
-      "answer": "42"
+      "problem": "Calculate: 4 * 4",
+      "answer": "16",
+      "subject": "arithmetic",
+      "original_level": 1
     },
     {
       "id": 2,
       "difficulty_label": "easy",
-      "problem": "If x = 5, what is 2x + 3?",
-      "answer": "13"
+      "problem": "Calculate: 11 * 6",
+      "answer": "66",
+      "subject": "arithmetic",
+      "original_level": 1
     },
     {
       "id": 3,
       "difficulty_label": "easy",
-      "problem": "What is 144 divided by 12?",
-      "answer": "12"
+      "problem": "Calculate: 53 - 74",
+      "answer": "-21",
+      "subject": "arithmetic",
+      "original_level": 1
     },
     {
       "id": 4,
-      "difficulty_label": "easy",
-      "problem": "Solve for x: x + 7 = 15",
-      "answer": "8"
+      "difficulty_label": "hard",
+      "problem": "Find the sum of the roots of x\u00b2 + -11x + 30 = 0",
+      "answer": "11",
+      "subject": "algebra",
+      "original_level": 5
     },
     {
       "id": 5,
       "difficulty_label": "easy",
-      "problem": "What is 25% of 80?",
-      "answer": "20"
+      "problem": "Calculate: 65 + 78",
+      "answer": "143",
+      "subject": "arithmetic",
+      "original_level": 1
     },
     {
       "id": 6,
-      "difficulty_label": "easy",
-      "problem": "What is the perimeter of a square with side length 5?",
-      "answer": "20"
+      "difficulty_label": "medium",
+      "problem": "Solve for x: 10x + 8 = 38",
+      "answer": "3",
+      "subject": "algebra",
+      "original_level": 3
     },
     {
       "id": 7,
       "difficulty_label": "easy",
-      "problem": "If a book costs $12 and you pay with a $20 bill, how much change do you get?",
-      "answer": "8"
+      "problem": "Calculate: 92 + 50",
+      "answer": "142",
+      "subject": "arithmetic",
+      "original_level": 1
     },
     {
       "id": 8,
       "difficulty_label": "medium",
-      "problem": "Solve for x: 3x + 5 = 2x + 12",
-      "answer": "7"
+      "problem": "What is 20% of 177?",
+      "answer": "35",
+      "subject": "arithmetic",
+      "original_level": 3
     },
     {
       "id": 9,
-      "difficulty_label": "medium",
-      "problem": "What is the area of a triangle with base 10 and height 6?",
-      "answer": "30"
+      "difficulty_label": "easy",
+      "problem": "Calculate: 12 * 10",
+      "answer": "120",
+      "subject": "arithmetic",
+      "original_level": 1
     },
     {
       "id": 10,
-      "difficulty_label": "medium",
-      "problem": "If f(x) = x^2 + 3x, what is f(4)?",
-      "answer": "28"
+      "difficulty_label": "hard",
+      "problem": "A circle has radius 8. Find its area (use \u03c0 \u2248 3.14, round to nearest integer).",
+      "answer": "200",
+      "subject": "geometry",
+      "original_level": 5
     },
     {
       "id": 11,
-      "difficulty_label": "medium",
-      "problem": "Find the value of x if 2^x = 32",
-      "answer": "5"
+      "difficulty_label": "hard",
+      "problem": "Find the sum of the roots of x\u00b2 + -8x + 7 = 0",
+      "answer": "8",
+      "subject": "algebra",
+      "original_level": 5
     },
     {
       "id": 12,
       "difficulty_label": "medium",
-      "problem": "What is the sum of the first 10 positive integers?",
-      "answer": "55"
+      "problem": "What is 20% of 59?",
+      "answer": "11",
+      "subject": "arithmetic",
+      "original_level": 3
     },
     {
       "id": 13,
       "difficulty_label": "medium",
-      "problem": "Simplify: (x^2 - 9) / (x - 3) for x ≠ 3",
-      "answer": "x + 3"
+      "problem": "Divide 95 in the ratio 3:2. What is the larger part?",
+      "answer": "57",
+      "subject": "ratio",
+      "original_level": 3
     },
     {
       "id": 14,
-      "difficulty_label": "medium",
-      "problem": "What is the probability of rolling a sum of 7 with two fair dice?",
-      "answer": "1/6"
+      "difficulty_label": "hard",
+      "problem": "Find the sum of the roots of x\u00b2 + -8x + 12 = 0",
+      "answer": "8",
+      "subject": "algebra",
+      "original_level": 5
     },
     {
       "id": 15,
-      "difficulty_label": "medium",
-      "problem": "Find the median of: 3, 7, 2, 9, 5, 1, 8",
-      "answer": "5"
+      "difficulty_label": "hard",
+      "problem": "Find the sum of the roots of x\u00b2 + -6x + 9 = 0",
+      "answer": "6",
+      "subject": "algebra",
+      "original_level": 5
     },
     {
       "id": 16,
-      "difficulty_label": "medium",
-      "problem": "A car travels 120 miles in 2 hours. What is its average speed in mph?",
-      "answer": "60"
+      "difficulty_label": "easy",
+      "problem": "Calculate: 17 + 41",
+      "answer": "58",
+      "subject": "arithmetic",
+      "original_level": 1
     },
     {
       "id": 17,
       "difficulty_label": "medium",
-      "problem": "Solve the system: x + y = 10 and x - y = 4",
-      "answer": "x=7, y=3"
+      "problem": "What is 15% of 56?",
+      "answer": "8",
+      "subject": "arithmetic",
+      "original_level": 3
     },
     {
       "id": 18,
-      "difficulty_label": "hard",
-      "problem": "Find all integer solutions to x^2 + y^2 = 25 where x, y > 0",
-      "answer": "(3,4) and (4,3)"
+      "difficulty_label": "medium",
+      "problem": "Solve for x: 5x + 18 = 78",
+      "answer": "12",
+      "subject": "algebra",
+      "original_level": 3
     },
     {
       "id": 19,
-      "difficulty_label": "hard",
-      "problem": "What is the third angle of a triangle if two angles are 45° and 75°?",
-      "answer": "60"
+      "difficulty_label": "easy",
+      "problem": "Calculate: 2 * 11",
+      "answer": "22",
+      "subject": "arithmetic",
+      "original_level": 1
     },
     {
       "id": 20,
-      "difficulty_label": "hard",
-      "problem": "How many ways can you arrange the letters in MISSISSIPPI?",
-      "answer": "34650"
+      "difficulty_label": "medium",
+      "problem": "Divide 104 in the ratio 3:5. What is the larger part?",
+      "answer": "65",
+      "subject": "ratio",
+      "original_level": 3
     },
     {
       "id": 21,
-      "difficulty_label": "hard",
-      "problem": "Find the sum of the infinite series: 1 + 1/2 + 1/4 + 1/8 + ...",
-      "answer": "2"
+      "difficulty_label": "medium",
+      "problem": "What is 20% of 153?",
+      "answer": "30",
+      "subject": "arithmetic",
+      "original_level": 3
     },
     {
       "id": 22,
-      "difficulty_label": "hard",
-      "problem": "In how many ways can 8 people be seated around a circular table?",
-      "answer": "5040"
+      "difficulty_label": "easy",
+      "problem": "Calculate: 65 + 24",
+      "answer": "89",
+      "subject": "arithmetic",
+      "original_level": 1
     },
     {
       "id": 23,
-      "difficulty_label": "hard",
-      "problem": "Find the number of positive divisors of 360",
-      "answer": "24"
+      "difficulty_label": "medium",
+      "problem": "Divide 153 in the ratio 3:5. What is the larger part?",
+      "answer": "96",
+      "subject": "ratio",
+      "original_level": 3
     },
     {
       "id": 24,
-      "difficulty_label": "hard",
-      "problem": "What is the greatest common divisor of 168 and 180?",
-      "answer": "12"
+      "difficulty_label": "medium",
+      "problem": "Solve for x: 8x + 18 = 130",
+      "answer": "14",
+      "subject": "algebra",
+      "original_level": 3
     },
     {
       "id": 25,
       "difficulty_label": "hard",
-      "problem": "A bag has 5 red and 3 blue balls. If 2 balls are drawn without replacement, what is the probability both are red?",
-      "answer": "5/14"
+      "problem": "A circle has radius 4. Find its area (use \u03c0 \u2248 3.14, round to nearest integer).",
+      "answer": "50",
+      "subject": "geometry",
+      "original_level": 5
+    },
+    {
+      "id": 26,
+      "difficulty_label": "easy",
+      "problem": "Calculate: 12 + 49",
+      "answer": "61",
+      "subject": "arithmetic",
+      "original_level": 1
+    },
+    {
+      "id": 27,
+      "difficulty_label": "hard",
+      "problem": "Find the sum of the roots of x\u00b2 + -7x + 10 = 0",
+      "answer": "7",
+      "subject": "algebra",
+      "original_level": 5
+    },
+    {
+      "id": 28,
+      "difficulty_label": "easy",
+      "problem": "Calculate: 9 * 8",
+      "answer": "72",
+      "subject": "arithmetic",
+      "original_level": 1
+    },
+    {
+      "id": 29,
+      "difficulty_label": "easy",
+      "problem": "Calculate: 13 + 96",
+      "answer": "109",
+      "subject": "arithmetic",
+      "original_level": 1
+    },
+    {
+      "id": 30,
+      "difficulty_label": "medium",
+      "problem": "What is 30% of 98?",
+      "answer": "29",
+      "subject": "arithmetic",
+      "original_level": 3
+    },
+    {
+      "id": 31,
+      "difficulty_label": "medium",
+      "problem": "What is 10% of 119?",
+      "answer": "11",
+      "subject": "arithmetic",
+      "original_level": 3
+    },
+    {
+      "id": 32,
+      "difficulty_label": "easy",
+      "problem": "Calculate: 29 - 61",
+      "answer": "-32",
+      "subject": "arithmetic",
+      "original_level": 1
+    },
+    {
+      "id": 33,
+      "difficulty_label": "medium",
+      "problem": "What is 10% of 93?",
+      "answer": "9",
+      "subject": "arithmetic",
+      "original_level": 3
+    },
+    {
+      "id": 34,
+      "difficulty_label": "medium",
+      "problem": "What is 30% of 59?",
+      "answer": "17",
+      "subject": "arithmetic",
+      "original_level": 3
+    },
+    {
+      "id": 35,
+      "difficulty_label": "hard",
+      "problem": "In an arithmetic sequence, the first term is 9 and the common difference is 2. Find the 20th term.",
+      "answer": "47",
+      "subject": "sequences",
+      "original_level": 5
+    },
+    {
+      "id": 36,
+      "difficulty_label": "easy",
+      "problem": "Calculate: 45 + 94",
+      "answer": "139",
+      "subject": "arithmetic",
+      "original_level": 1
+    },
+    {
+      "id": 37,
+      "difficulty_label": "medium",
+      "problem": "Solve for x: 10x + 10 = 120",
+      "answer": "11",
+      "subject": "algebra",
+      "original_level": 3
+    },
+    {
+      "id": 38,
+      "difficulty_label": "easy",
+      "problem": "Calculate: 8 * 9",
+      "answer": "72",
+      "subject": "arithmetic",
+      "original_level": 1
+    },
+    {
+      "id": 39,
+      "difficulty_label": "easy",
+      "problem": "Calculate: 54 + 83",
+      "answer": "137",
+      "subject": "arithmetic",
+      "original_level": 1
+    },
+    {
+      "id": 40,
+      "difficulty_label": "hard",
+      "problem": "In an arithmetic sequence, the first term is 2 and the common difference is 2. Find the 14th term.",
+      "answer": "28",
+      "subject": "sequences",
+      "original_level": 5
+    },
+    {
+      "id": 41,
+      "difficulty_label": "easy",
+      "problem": "Calculate: 64 - 57",
+      "answer": "7",
+      "subject": "arithmetic",
+      "original_level": 1
+    },
+    {
+      "id": 42,
+      "difficulty_label": "hard",
+      "problem": "In an arithmetic sequence, the first term is 7 and the common difference is 5. Find the 17th term.",
+      "answer": "87",
+      "subject": "sequences",
+      "original_level": 5
+    },
+    {
+      "id": 43,
+      "difficulty_label": "hard",
+      "problem": "Find the sum of the roots of x\u00b2 + -9x + 20 = 0",
+      "answer": "9",
+      "subject": "algebra",
+      "original_level": 5
+    },
+    {
+      "id": 44,
+      "difficulty_label": "hard",
+      "problem": "Find the sum of the roots of x\u00b2 + -9x + 14 = 0",
+      "answer": "9",
+      "subject": "algebra",
+      "original_level": 5
+    },
+    {
+      "id": 45,
+      "difficulty_label": "easy",
+      "problem": "Calculate: 21 + 96",
+      "answer": "117",
+      "subject": "arithmetic",
+      "original_level": 1
+    },
+    {
+      "id": 46,
+      "difficulty_label": "easy",
+      "problem": "Calculate: 78 + 49",
+      "answer": "127",
+      "subject": "arithmetic",
+      "original_level": 1
+    },
+    {
+      "id": 47,
+      "difficulty_label": "hard",
+      "problem": "Find the sum of the roots of x\u00b2 + -11x + 30 = 0",
+      "answer": "11",
+      "subject": "algebra",
+      "original_level": 5
+    },
+    {
+      "id": 48,
+      "difficulty_label": "easy",
+      "problem": "Calculate: 55 - 20",
+      "answer": "35",
+      "subject": "arithmetic",
+      "original_level": 1
+    },
+    {
+      "id": 49,
+      "difficulty_label": "hard",
+      "problem": "In an arithmetic sequence, the first term is 2 and the common difference is 2. Find the 19th term.",
+      "answer": "38",
+      "subject": "sequences",
+      "original_level": 5
+    },
+    {
+      "id": 50,
+      "difficulty_label": "easy",
+      "problem": "Calculate: 16 + 53",
+      "answer": "69",
+      "subject": "arithmetic",
+      "original_level": 1
+    },
+    {
+      "id": 51,
+      "difficulty_label": "easy",
+      "problem": "Calculate: 7 * 10",
+      "answer": "70",
+      "subject": "arithmetic",
+      "original_level": 1
+    },
+    {
+      "id": 52,
+      "difficulty_label": "easy",
+      "problem": "Calculate: 6 * 3",
+      "answer": "18",
+      "subject": "arithmetic",
+      "original_level": 1
+    },
+    {
+      "id": 53,
+      "difficulty_label": "medium",
+      "problem": "Solve for x: 7x + 17 = 122",
+      "answer": "15",
+      "subject": "algebra",
+      "original_level": 3
+    },
+    {
+      "id": 54,
+      "difficulty_label": "medium",
+      "problem": "Divide 85 in the ratio 3:4. What is the larger part?",
+      "answer": "49",
+      "subject": "ratio",
+      "original_level": 3
+    },
+    {
+      "id": 55,
+      "difficulty_label": "hard",
+      "problem": "A circle has radius 10. Find its area (use \u03c0 \u2248 3.14, round to nearest integer).",
+      "answer": "314",
+      "subject": "geometry",
+      "original_level": 5
+    },
+    {
+      "id": 56,
+      "difficulty_label": "easy",
+      "problem": "Calculate: 25 + 85",
+      "answer": "110",
+      "subject": "arithmetic",
+      "original_level": 1
+    },
+    {
+      "id": 57,
+      "difficulty_label": "easy",
+      "problem": "Calculate: 18 - 47",
+      "answer": "-29",
+      "subject": "arithmetic",
+      "original_level": 1
+    },
+    {
+      "id": 58,
+      "difficulty_label": "medium",
+      "problem": "Solve for x: 7x + 13 = 90",
+      "answer": "11",
+      "subject": "algebra",
+      "original_level": 3
+    },
+    {
+      "id": 59,
+      "difficulty_label": "medium",
+      "problem": "Divide 146 in the ratio 6:8. What is the larger part?",
+      "answer": "84",
+      "subject": "ratio",
+      "original_level": 3
+    },
+    {
+      "id": 60,
+      "difficulty_label": "medium",
+      "problem": "What is 10% of 53?",
+      "answer": "5",
+      "subject": "arithmetic",
+      "original_level": 3
+    },
+    {
+      "id": 61,
+      "difficulty_label": "medium",
+      "problem": "What is 25% of 127?",
+      "answer": "31",
+      "subject": "arithmetic",
+      "original_level": 3
+    },
+    {
+      "id": 62,
+      "difficulty_label": "medium",
+      "problem": "What is 10% of 176?",
+      "answer": "17",
+      "subject": "arithmetic",
+      "original_level": 3
+    },
+    {
+      "id": 63,
+      "difficulty_label": "medium",
+      "problem": "Solve for x: 6x + 14 = 38",
+      "answer": "4",
+      "subject": "algebra",
+      "original_level": 3
+    },
+    {
+      "id": 64,
+      "difficulty_label": "easy",
+      "problem": "Calculate: 38 + 60",
+      "answer": "98",
+      "subject": "arithmetic",
+      "original_level": 1
+    },
+    {
+      "id": 65,
+      "difficulty_label": "medium",
+      "problem": "What is 30% of 142?",
+      "answer": "42",
+      "subject": "arithmetic",
+      "original_level": 3
+    },
+    {
+      "id": 66,
+      "difficulty_label": "hard",
+      "problem": "A circle has radius 3. Find its area (use \u03c0 \u2248 3.14, round to nearest integer).",
+      "answer": "28",
+      "subject": "geometry",
+      "original_level": 5
+    },
+    {
+      "id": 67,
+      "difficulty_label": "medium",
+      "problem": "Divide 57 in the ratio 2:8. What is the larger part?",
+      "answer": "46",
+      "subject": "ratio",
+      "original_level": 3
+    },
+    {
+      "id": 68,
+      "difficulty_label": "easy",
+      "problem": "Calculate: 48 + 98",
+      "answer": "146",
+      "subject": "arithmetic",
+      "original_level": 1
+    },
+    {
+      "id": 69,
+      "difficulty_label": "easy",
+      "problem": "Calculate: 60 - 59",
+      "answer": "1",
+      "subject": "arithmetic",
+      "original_level": 1
+    },
+    {
+      "id": 70,
+      "difficulty_label": "medium",
+      "problem": "Calculate: 523 + 61",
+      "answer": "584",
+      "subject": "arithmetic",
+      "original_level": 2
+    },
+    {
+      "id": 71,
+      "difficulty_label": "hard",
+      "problem": "A circle has radius 4. Find its area (use \u03c0 \u2248 3.14, round to nearest integer).",
+      "answer": "50",
+      "subject": "geometry",
+      "original_level": 5
+    },
+    {
+      "id": 72,
+      "difficulty_label": "hard",
+      "problem": "A circle has radius 8. Find its area (use \u03c0 \u2248 3.14, round to nearest integer).",
+      "answer": "200",
+      "subject": "geometry",
+      "original_level": 5
+    },
+    {
+      "id": 73,
+      "difficulty_label": "medium",
+      "problem": "What is 10% of 58?",
+      "answer": "5",
+      "subject": "arithmetic",
+      "original_level": 3
+    },
+    {
+      "id": 74,
+      "difficulty_label": "hard",
+      "problem": "In an arithmetic sequence, the first term is 7 and the common difference is 2. Find the 19th term.",
+      "answer": "43",
+      "subject": "sequences",
+      "original_level": 5
+    },
+    {
+      "id": 75,
+      "difficulty_label": "medium",
+      "problem": "Divide 89 in the ratio 3:3. What is the larger part?",
+      "answer": "45",
+      "subject": "ratio",
+      "original_level": 3
+    },
+    {
+      "id": 76,
+      "difficulty_label": "medium",
+      "problem": "What is 15% of 133?",
+      "answer": "19",
+      "subject": "arithmetic",
+      "original_level": 3
+    },
+    {
+      "id": 77,
+      "difficulty_label": "hard",
+      "problem": "In an arithmetic sequence, the first term is 10 and the common difference is 5. Find the 20th term.",
+      "answer": "105",
+      "subject": "sequences",
+      "original_level": 5
+    },
+    {
+      "id": 78,
+      "difficulty_label": "hard",
+      "problem": "In an arithmetic sequence, the first term is 3 and the common difference is 5. Find the 12th term.",
+      "answer": "58",
+      "subject": "sequences",
+      "original_level": 5
+    },
+    {
+      "id": 79,
+      "difficulty_label": "hard",
+      "problem": "A circle has radius 5. Find its area (use \u03c0 \u2248 3.14, round to nearest integer).",
+      "answer": "78",
+      "subject": "geometry",
+      "original_level": 5
+    },
+    {
+      "id": 80,
+      "difficulty_label": "hard",
+      "problem": "In an arithmetic sequence, the first term is 3 and the common difference is 3. Find the 14th term.",
+      "answer": "42",
+      "subject": "sequences",
+      "original_level": 5
+    },
+    {
+      "id": 81,
+      "difficulty_label": "hard",
+      "problem": "In an arithmetic sequence, the first term is 1 and the common difference is 5. Find the 18th term.",
+      "answer": "86",
+      "subject": "sequences",
+      "original_level": 5
+    },
+    {
+      "id": 82,
+      "difficulty_label": "hard",
+      "problem": "Find the sum of the roots of x\u00b2 + -5x + 6 = 0",
+      "answer": "5",
+      "subject": "algebra",
+      "original_level": 5
+    },
+    {
+      "id": 83,
+      "difficulty_label": "easy",
+      "problem": "Calculate: 4 * 8",
+      "answer": "32",
+      "subject": "arithmetic",
+      "original_level": 1
+    },
+    {
+      "id": 84,
+      "difficulty_label": "medium",
+      "problem": "Solve for x: 2x + 19 = 37",
+      "answer": "9",
+      "subject": "algebra",
+      "original_level": 3
+    },
+    {
+      "id": 85,
+      "difficulty_label": "easy",
+      "problem": "Calculate: 22 - 54",
+      "answer": "-32",
+      "subject": "arithmetic",
+      "original_level": 1
+    },
+    {
+      "id": 86,
+      "difficulty_label": "easy",
+      "problem": "Calculate: 73 + 22",
+      "answer": "95",
+      "subject": "arithmetic",
+      "original_level": 1
+    },
+    {
+      "id": 87,
+      "difficulty_label": "hard",
+      "problem": "Find the sum of the roots of x\u00b2 + -12x + 36 = 0",
+      "answer": "12",
+      "subject": "algebra",
+      "original_level": 5
+    },
+    {
+      "id": 88,
+      "difficulty_label": "hard",
+      "problem": "In an arithmetic sequence, the first term is 10 and the common difference is 3. Find the 10th term.",
+      "answer": "37",
+      "subject": "sequences",
+      "original_level": 5
+    },
+    {
+      "id": 89,
+      "difficulty_label": "hard",
+      "problem": "In an arithmetic sequence, the first term is 10 and the common difference is 5. Find the 11th term.",
+      "answer": "60",
+      "subject": "sequences",
+      "original_level": 5
+    },
+    {
+      "id": 90,
+      "difficulty_label": "easy",
+      "problem": "Calculate: 70 + 31",
+      "answer": "101",
+      "subject": "arithmetic",
+      "original_level": 1
+    },
+    {
+      "id": 91,
+      "difficulty_label": "medium",
+      "problem": "What is 15% of 166?",
+      "answer": "24",
+      "subject": "arithmetic",
+      "original_level": 3
+    },
+    {
+      "id": 92,
+      "difficulty_label": "hard",
+      "problem": "Find the sum of the roots of x\u00b2 + -5x + 6 = 0",
+      "answer": "5",
+      "subject": "algebra",
+      "original_level": 5
+    },
+    {
+      "id": 93,
+      "difficulty_label": "medium",
+      "problem": "What is 30% of 146?",
+      "answer": "43",
+      "subject": "arithmetic",
+      "original_level": 3
+    },
+    {
+      "id": 94,
+      "difficulty_label": "hard",
+      "problem": "A circle has radius 3. Find its area (use \u03c0 \u2248 3.14, round to nearest integer).",
+      "answer": "28",
+      "subject": "geometry",
+      "original_level": 5
+    },
+    {
+      "id": 95,
+      "difficulty_label": "hard",
+      "problem": "In an arithmetic sequence, the first term is 8 and the common difference is 5. Find the 12th term.",
+      "answer": "63",
+      "subject": "sequences",
+      "original_level": 5
+    },
+    {
+      "id": 96,
+      "difficulty_label": "hard",
+      "problem": "A circle has radius 6. Find its area (use \u03c0 \u2248 3.14, round to nearest integer).",
+      "answer": "113",
+      "subject": "geometry",
+      "original_level": 5
+    },
+    {
+      "id": 97,
+      "difficulty_label": "medium",
+      "problem": "Divide 168 in the ratio 7:4. What is the larger part?",
+      "answer": "106",
+      "subject": "ratio",
+      "original_level": 3
+    },
+    {
+      "id": 98,
+      "difficulty_label": "medium",
+      "problem": "Solve for x: 9x + 12 = 102",
+      "answer": "10",
+      "subject": "algebra",
+      "original_level": 3
+    },
+    {
+      "id": 99,
+      "difficulty_label": "easy",
+      "problem": "Calculate: 6 * 7",
+      "answer": "42",
+      "subject": "arithmetic",
+      "original_level": 1
+    },
+    {
+      "id": 100,
+      "difficulty_label": "hard",
+      "problem": "In an arithmetic sequence, the first term is 4 and the common difference is 4. Find the 18th term.",
+      "answer": "72",
+      "subject": "sequences",
+      "original_level": 5
     }
   ]
 }

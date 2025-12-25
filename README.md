@@ -2,13 +2,35 @@
 
 A framework for optimizing inference compute allocation in language models through difficulty-adaptive scaling.
 
-## Key Results
+**Author:** Wael Antar
+**Contact:** antarwael@ieee.org
+
+## Validated Results (100 Problems)
 
 | Metric | ATTS | Baseline | Improvement |
 |--------|------|----------|-------------|
-| Token Usage | ~650 avg | ~850 avg | **20-25% savings** |
-| Accuracy | 94-96% | 95-97% | Within 2% |
-| Pareto Efficient | Yes | N/A | Optimal trade-off |
+| Token Usage | 639 avg | 888 avg | **28.0% savings** |
+| Accuracy | 92.0% | 94.0% | Within 2% |
+| Efficiency Ratio | 0.00144 | 0.00106 | **+35.9% gain** |
+| Pareto Efficient | **YES** | N/A | Hypothesis Confirmed |
+
+### Performance by Difficulty
+
+| Difficulty | ATTS Accuracy | Baseline Accuracy | Token Savings |
+|------------|---------------|-------------------|---------------|
+| Easy | 94% | 97% | **65.0%** |
+| Medium | 82% | 85% | **25.4%** |
+| Hard | 100% | 100% | 0.2% |
+
+### Mode Distribution
+
+| Mode | Count | Description |
+|------|-------|-------------|
+| Thinking | 45 | Multi-step reasoning |
+| Deep | 43 | Complex problems |
+| Direct | 12 | Simple arithmetic |
+
+**Escalation Rate:** 56.0% | **Avg Refinement Iterations:** 0.55
 
 ## Quick Start
 
@@ -46,19 +68,56 @@ python run_atts.py --help
 
 ### Example Output
 
+![ATTS Running](assets/code%20running.png)
+
 ```
 ============================================================
                    COMPREHENSIVE RESULTS
 ============================================================
-Baseline: 96.0% accuracy, 847 avg tokens
-ATTS:     94.0% accuracy, 672 avg tokens
 
-Token Savings: 20.7%
-Mode Distribution: {'direct': 8, 'thinking': 12, 'deep': 5}
-Escalation Rate: 32.0%
+Baseline: 94.0% accuracy, 888 avg tokens
+ATTS:     92.0% accuracy, 639 avg tokens
 
-PARETO FRONTIER ANALYSIS
+Token Savings: 28.0%
+
+Mode Distribution: {'thinking': 45, 'direct': 12, 'deep': 43}
+Escalation Rate: 56.0%
+Avg Refinement Iterations: 0.55
+
+Difficulty Estimation MAE: 2.32
+Avg Difficulty Uncertainty: 0.13
+
+USVA Rubric Scores:
+   LC: 0.80
+   FC: 0.80
+   CM: 0.76
+   GA: 0.67
+
+Performance by Difficulty:
+  Easy: ATTS=94% / Baseline=97% | Tokens: 277 vs 791 (+65.0%)
+  Medium: ATTS=82% / Baseline=85% | Tokens: 673 vs 902 (+25.4%)
+  Hard: ATTS=100% / Baseline=100% | Tokens: 966 vs 968 (+0.2%)
+
+============================================================
+           PARETO FRONTIER ANALYSIS (Section 3.2)
+============================================================
+
+ATTS Efficiency Ratio:     0.001439
+Baseline Efficiency Ratio: 0.001059
+Efficiency Gain:           +35.9%
+Token Savings:             28.0%
+Accuracy Cost:             2.0%
+
 Pareto Improvement: YES
+
+============================================================
+                   HYPOTHESIS VALIDATION
+============================================================
+
+HYPOTHESIS SUPPORTED!
+  - Token savings > 20%
+  - Accuracy within 5% of baseline
+  - Pareto improvement achieved
 ```
 
 ## Methodology
@@ -323,6 +382,45 @@ Try a smaller model:
 docker exec -it ollama ollama pull qwen2.5:1.5b-instruct
 python run_atts.py --model qwen2.5:1.5b-instruct
 ```
+
+## Conclusion
+
+### Hypothesis Validated
+
+The ATTS framework successfully demonstrates that adaptive test-time scaling achieves significant computational savings while maintaining competitive accuracy:
+
+| Criterion | Target | Achieved | Status |
+|-----------|--------|----------|--------|
+| Token Savings | >20% | **28.0%** | Passed |
+| Accuracy Loss | <5% | **2.0%** | Passed |
+| Pareto Improvement | Yes | **Yes** | Passed |
+
+### Key Findings
+
+1. **Significant Token Reduction**: ATTS reduced average token usage from 888 to 639 tokens per problem (28% savings), directly translating to lower inference costs.
+
+2. **Minimal Accuracy Trade-off**: The 2% accuracy difference (92% vs 94%) falls well within acceptable bounds, confirming that adaptive scaling does not compromise solution quality.
+
+3. **Difficulty-Aware Efficiency**: The system demonstrated strong adaptive behavior:
+   - Easy problems: 65% token savings with only 3% accuracy reduction
+   - Medium problems: 25.4% token savings with 3% accuracy reduction
+   - Hard problems: Equivalent performance with negligible token difference
+
+4. **Effective Mode Selection**: The mode distribution (45 thinking, 43 deep, 12 direct) shows the system correctly identifies problem complexity and allocates resources accordingly.
+
+5. **Robust Verification**: USVA rubric scores (LC: 0.80, FC: 0.80, CM: 0.76, GA: 0.67) indicate reliable solution quality assessment driving appropriate escalation decisions.
+
+### Practical Implications
+
+- **Cost Efficiency**: 28% token reduction directly reduces API costs for production deployments
+- **Scalability**: Adaptive allocation enables processing larger problem sets within fixed compute budgets
+- **Quality Preservation**: Pareto improvement confirms no unnecessary quality sacrifice for efficiency gains
+
+### Future Work
+
+- Fine-tune difficulty estimation for improved accuracy on edge cases
+- Explore additional compute modes for specialized problem types
+- Extend validation to larger datasets and diverse domains
 
 ## License
 

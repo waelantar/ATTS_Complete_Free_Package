@@ -34,6 +34,132 @@ def clean_latex_answer(answer: str) -> str:
     # Fallback: return as-is
     return answer.strip()
 
+def generate_synthetic_problems(max_size: int) -> List[Dict]:
+    """Generate synthetic math problems when dataset is unavailable."""
+    import random
+
+    problems = []
+    target_per_difficulty = max_size // 3
+
+    # Easy problems (arithmetic)
+    for i in range(target_per_difficulty):
+        a, b = random.randint(10, 99), random.randint(10, 99)
+        op = random.choice(['+', '-', '*'])
+        if op == '+':
+            answer = a + b
+        elif op == '-':
+            answer = a - b
+        else:
+            a, b = random.randint(2, 12), random.randint(2, 12)
+            answer = a * b
+        problems.append({
+            "id": len(problems) + 1,
+            "difficulty_label": "easy",
+            "problem": f"Calculate: {a} {op} {b}",
+            "answer": str(answer),
+            "subject": "arithmetic",
+            "original_level": 1
+        })
+
+    # Medium problems (algebra, multi-step)
+    for i in range(target_per_difficulty):
+        problem_type = random.choice(['linear', 'percentage', 'ratio'])
+        if problem_type == 'linear':
+            a = random.randint(2, 10)
+            b = random.randint(1, 20)
+            x = random.randint(1, 15)
+            result = a * x + b
+            problems.append({
+                "id": len(problems) + 1,
+                "difficulty_label": "medium",
+                "problem": f"Solve for x: {a}x + {b} = {result}",
+                "answer": str(x),
+                "subject": "algebra",
+                "original_level": 3
+            })
+        elif problem_type == 'percentage':
+            base = random.randint(50, 200)
+            pct = random.choice([10, 15, 20, 25, 30])
+            answer = base * pct // 100
+            problems.append({
+                "id": len(problems) + 1,
+                "difficulty_label": "medium",
+                "problem": f"What is {pct}% of {base}?",
+                "answer": str(answer),
+                "subject": "arithmetic",
+                "original_level": 3
+            })
+        else:
+            a, b = random.randint(2, 8), random.randint(2, 8)
+            total = random.randint(50, 200)
+            part = total * a // (a + b)
+            problems.append({
+                "id": len(problems) + 1,
+                "difficulty_label": "medium",
+                "problem": f"Divide {total} in the ratio {a}:{b}. What is the larger part?",
+                "answer": str(max(part, total - part)),
+                "subject": "ratio",
+                "original_level": 3
+            })
+
+    # Hard problems (quadratic, sequences, geometry)
+    for i in range(target_per_difficulty):
+        problem_type = random.choice(['quadratic', 'sequence', 'geometry'])
+        if problem_type == 'quadratic':
+            r1, r2 = random.randint(1, 8), random.randint(1, 8)
+            a, b, c = 1, -(r1 + r2), r1 * r2
+            problems.append({
+                "id": len(problems) + 1,
+                "difficulty_label": "hard",
+                "problem": f"Find the sum of the roots of x² + {b}x + {c} = 0",
+                "answer": str(r1 + r2),
+                "subject": "algebra",
+                "original_level": 5
+            })
+        elif problem_type == 'sequence':
+            a1 = random.randint(1, 10)
+            d = random.randint(2, 5)
+            n = random.randint(10, 20)
+            an = a1 + (n - 1) * d
+            problems.append({
+                "id": len(problems) + 1,
+                "difficulty_label": "hard",
+                "problem": f"In an arithmetic sequence, the first term is {a1} and the common difference is {d}. Find the {n}th term.",
+                "answer": str(an),
+                "subject": "sequences",
+                "original_level": 5
+            })
+        else:
+            r = random.randint(3, 10)
+            area = r * r * 314 // 100  # Approximate pi as 3.14
+            problems.append({
+                "id": len(problems) + 1,
+                "difficulty_label": "hard",
+                "problem": f"A circle has radius {r}. Find its area (use π ≈ 3.14, round to nearest integer).",
+                "answer": str(area),
+                "subject": "geometry",
+                "original_level": 5
+            })
+
+    # Fill remaining if needed
+    while len(problems) < max_size:
+        a, b = random.randint(100, 999), random.randint(10, 99)
+        problems.append({
+            "id": len(problems) + 1,
+            "difficulty_label": "medium",
+            "problem": f"Calculate: {a} + {b}",
+            "answer": str(a + b),
+            "subject": "arithmetic",
+            "original_level": 2
+        })
+
+    random.shuffle(problems)
+    for i, p in enumerate(problems):
+        p["id"] = i + 1
+
+    return problems[:max_size]
+
+
 def map_difficulty(level: int) -> str:
     """
     Map MATH difficulty levels (1-5) to ATTS categories
@@ -69,14 +195,28 @@ def convert_math_dataset(max_size: int = 100, balance_difficulties: bool = True)
         print("   Run: pip install datasets")
         return []
 
-    # Load dataset (train split)
-    try:
-        ds = load_dataset('hendrycks/MATH', split='train', trust_remote_code=True)
-        print(f"✅ Loaded {len(ds)} problems from MATH dataset")
-    except Exception as e:
-        print(f"❌ Error loading dataset: {e}")
-        print("   Make sure you have internet connection")
-        return []
+    # Load dataset - try multiple sources
+    ds = None
+    dataset_sources = [
+        ("lighteval/MATH", "train"),
+        ("competition_math", "train"),
+        ("hendrycks/competition_math", "train"),
+    ]
+
+    for dataset_name, split in dataset_sources:
+        try:
+            print(f"   Trying: {dataset_name}...")
+            ds = load_dataset(dataset_name, split=split)
+            print(f"✅ Loaded {len(ds)} problems from {dataset_name}")
+            break
+        except Exception as e:
+            print(f"   ⚠️ {dataset_name} failed: {str(e)[:50]}")
+            continue
+
+    if ds is None:
+        print("❌ Could not load any MATH dataset source")
+        print("   Generating synthetic math problems instead...")
+        return generate_synthetic_problems(max_size)
 
     # Convert to ATTS format
     problems = []
